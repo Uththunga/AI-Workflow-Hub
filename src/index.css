@@ -131,6 +131,46 @@
   .focus-ring {
     @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
   }
+
+  /* AI Assistant Cyber Theme Styles */
+  .font-tech {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-weight: 600;
+  }
+
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thumb-cyber-600 {
+    scrollbar-color: #0284c7 transparent;
+  }
+
+  .scrollbar-track-dark-800 {
+    scrollbar-color: #1e293b transparent;
+  }
+
+  /* Custom scrollbar for webkit browsers */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: #1e293b;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #0284c7;
+    border-radius: 3px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #0369a1;
+  }
 }
 
 /* Animations */
@@ -153,6 +193,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 5px rgba(2, 132, 199, 0.5), 0 0 10px rgba(2, 132, 199, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(2, 132, 199, 0.8), 0 0 20px rgba(2, 132, 199, 0.5), 0 0 30px rgba(2, 132, 199, 0.3);
   }
 }
 

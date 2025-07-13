@@ -87,7 +87,7 @@ describe('LLM Service', () => {
       // Mock OpenAI to throw an error
       const OpenAI = await import('openai')
       const mockCreate = vi.fn().mockRejectedValue(new Error('API Error'))
-      
+
       vi.mocked(OpenAI.default).mockImplementation(() => ({
         chat: {
           completions: {
@@ -100,7 +100,7 @@ describe('LLM Service', () => {
       const response = await generateLLMResponse(userMessage)
 
       expect(response.error).toBeDefined()
-      expect(response.content).toContain('AI Workflow Hub') // Should contain fallback content
+      expect(response.content).toContain('Machan') // Should contain fallback content
     })
   })
 
@@ -112,8 +112,9 @@ describe('LLM Service', () => {
 
     it('should return false when LLM is unhealthy', async () => {
       // Mock the validateLLMConfig to return false
-      const { validateLLMConfig } = await import('../config/llm')
-      vi.mocked(validateLLMConfig).mockReturnValue(false)
+      const llmModule = await import('../../config/llm')
+      const mockValidate = vi.fn().mockReturnValue(false)
+      vi.mocked(llmModule.validateLLMConfig).mockImplementation(mockValidate)
 
       const isHealthy = await checkLLMHealth()
       expect(isHealthy).toBe(false)

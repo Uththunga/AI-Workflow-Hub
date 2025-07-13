@@ -183,10 +183,35 @@ This demonstrates the kind of analytical capabilities I provide! Once I'm back o
   }
 
   // Handle simple math questions
-  const mathMatch = userMessage.match(/(\d+)\s*[\+\-\*\/]\s*(\d+)/i)
+  const mathMatch = userMessage.match(/(\d+)\s*([+\-*/])\s*(\d+)/i)
   if (mathMatch) {
     try {
-      const result = eval(mathMatch[0])
+      const [, num1, operator, num2] = mathMatch
+      const a = parseInt(num1, 10)
+      const b = parseInt(num2, 10)
+      let result: number
+
+      switch (operator) {
+        case '+':
+          result = a + b
+          break
+        case '-':
+          result = a - b
+          break
+        case '*':
+          result = a * b
+          break
+        case '/':
+          result = b !== 0 ? a / b : NaN
+          break
+        default:
+          throw new Error('Unsupported operator')
+      }
+
+      if (isNaN(result)) {
+        throw new Error('Invalid calculation')
+      }
+
       return `Hi! I'm Machan. Even offline, I can help with that calculation: ${mathMatch[0]} = ${result}
 
 This showcases the computational power I bring to our workflow automation platform!`

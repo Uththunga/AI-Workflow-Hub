@@ -128,18 +128,6 @@ export function RiskAssessmentPage() {
     }
   ]
 
-  const riskMatrix = [
-    { impact: 'High', probability: 'High', level: 'Critical', color: 'bg-red-600' },
-    { impact: 'High', probability: 'Medium', level: 'High', color: 'bg-red-500' },
-    { impact: 'High', probability: 'Low', level: 'Medium', color: 'bg-yellow-500' },
-    { impact: 'Medium', probability: 'High', level: 'High', color: 'bg-red-500' },
-    { impact: 'Medium', probability: 'Medium', level: 'Medium', color: 'bg-yellow-500' },
-    { impact: 'Medium', probability: 'Low', level: 'Low', color: 'bg-green-500' },
-    { impact: 'Low', probability: 'High', level: 'Medium', color: 'bg-yellow-500' },
-    { impact: 'Low', probability: 'Medium', level: 'Low', color: 'bg-green-500' },
-    { impact: 'Low', probability: 'Low', level: 'Low', color: 'bg-green-500' }
-  ]
-
   const getImpactColor = (impact: string) => {
     switch (impact) {
       case 'High': return 'text-red-600 bg-red-100'

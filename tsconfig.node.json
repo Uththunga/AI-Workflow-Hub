@@ -5,9 +5,8 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
+    "noEmit": true,
     "strict": true
   },
-  "extends": "./tsconfig.json",
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "exclude": []
+  "include": ["vite.config.js", "vitest.config.ts"]
 }

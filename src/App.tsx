@@ -43,7 +43,7 @@ export function App() {
   }, [isAssistantOpen])
 
   return (
-    <Router>
+    <Router basename="/AI-Workflow-Hub">
       <div className="min-h-screen flex flex-col bg-white">
         <Header />
         <main className="flex-1">
@@ -68,7 +68,6 @@ export function App() {
           isOpen={isAssistantOpen}
           onClose={handleCloseAssistant}
         />
-
 
       </div>
     </Router>

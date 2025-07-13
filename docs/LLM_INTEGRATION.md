@@ -13,10 +13,12 @@ Machan uses advanced AI technology to provide intelligent, context-aware respons
 Create a `.env` file in your project root with:
 
 ```env
-VITE_OPENROUTER_API_KEY=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
+VITE_OPENROUTER_API_KEY=your_api_key_here
 VITE_OPENROUTER_MODEL=mistralai/mistral-small-3.2-24b-instruct:free
 VITE_OPENROUTER_BASE_URL=https://openrouter.ai/api/v1
 ```
+
+**Note**: Get your API key from [OpenRouter](https://openrouter.ai/keys) and replace `your_api_key_here` with your actual key.
 
 ### LLM Configuration
 
