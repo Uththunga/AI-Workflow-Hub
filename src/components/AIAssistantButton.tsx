@@ -100,13 +100,7 @@ export function AIAssistantButton({ onClick, isAssistantOpen }: AIAssistantButto
         </div>
       )}
 
-      {/* Keyboard shortcut hint - Hidden on mobile */}
-      {isHovered && !isAssistantOpen && (
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-dark-700/90 text-xs text-gray-300 rounded border border-cyber-500/20 whitespace-nowrap
-                        hidden md:block">
-          Press <kbd className="bg-cyber-600/30 px-1 rounded text-cyber-300">Ctrl+K</kbd>
-        </div>
-      )}
+
     </div>
   )
 }
