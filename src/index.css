@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white text-secondary-900 antialiased;
+    line-height: 1.6;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-secondary-100;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-400 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-500;
+  }
+
+  /* Typography improvements */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold text-secondary-900;
+    line-height: 1.2;
+  }
+
+  p {
+    @apply text-secondary-700;
+  }
+}
+
+@layer components {
+  /* Modern Button Styles */
+  .btn-primary {
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply bg-white border border-secondary-300 hover:bg-secondary-50 text-secondary-700 font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply border border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+
+  .btn-large {
+    @apply py-4 px-8 text-lg;
+  }
+
+  /* Modern Card Styles */
+  .card {
+    @apply bg-white rounded-xl border border-secondary-200 p-6 shadow-sm hover:shadow-md transition-all duration-200;
+  }
+
+  .card-elevated {
+    @apply bg-white rounded-xl border border-secondary-200 p-6 shadow-lg hover:shadow-xl transition-all duration-200;
+  }
+
+  .card-feature {
+    @apply bg-white rounded-xl border border-secondary-200 p-8 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-primary-200;
+  }
+
+  /* Typography Styles */
+  .section-title {
+    @apply text-4xl font-bold text-secondary-900 mb-6;
+  }
+
+  .section-subtitle {
+    @apply text-2xl font-semibold text-secondary-800 mb-4;
+  }
+
+  .hero-title {
+    @apply text-5xl md:text-6xl lg:text-7xl font-bold text-secondary-900 leading-tight;
+  }
+
+  .hero-subtitle {
+    @apply text-xl md:text-2xl text-secondary-600 font-normal;
+  }
+
+  /* Layout Styles */
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16;
+  }
+
+  /* Background Styles */
+  .bg-gradient-subtle {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  }
+
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  }
+
+  /* Utility Classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  /* Focus styles for accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+  /* Improve touch scrolling */
+  .overscroll-behavior-contain {
+    overscroll-behavior: contain;
+  }
+
+  /* Better touch targets */
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+
+  /* Prevent zoom on input focus */
+  input[type="text"], input[type="email"], input[type="password"], textarea {
+    font-size: 16px !important;
+  }
+
+  /* Smooth scrolling for mobile */
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Hide scrollbars on mobile for cleaner look */
+  .scrollbar-thin {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    display: none;
+  }
+}
