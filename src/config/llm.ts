@@ -1,12 +1,23 @@
 // LLM Configuration
 export const LLM_CONFIG = {
-  apiKey: import.meta.env.VITE_OPENROUTER_API_KEY,
+  apiKey: import.meta.env.VITE_OPENROUTER_API_KEY || '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',
   model: import.meta.env.VITE_OPENROUTER_MODEL || 'mistralai/mistral-small-3.2-24b-instruct:free',
   baseURL: import.meta.env.VITE_OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1',
   maxTokens: 1000,
   temperature: 0.7,
   stream: true,
 } as const
+
+// Debug logging for production
+if (typeof window !== 'undefined') {
+  console.log('LLM Config Debug:', {
+    hasApiKey: !!LLM_CONFIG.apiKey,
+    apiKeyPrefix: LLM_CONFIG.apiKey ? LLM_CONFIG.apiKey.substring(0, 10) + '...' : 'undefined',
+    model: LLM_CONFIG.model,
+    baseURL: LLM_CONFIG.baseURL,
+    env: import.meta.env.MODE
+  })
+}
 
 // System prompt for the AI assistant
 export const SYSTEM_PROMPT = `You are Machan, an AI Workflow Assistant for the AI Workflow Hub website. You are knowledgeable, helpful, and professional. Your role is to help users understand and navigate our AI workflow automation platform.
