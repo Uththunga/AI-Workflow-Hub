@@ -1,7 +1,7 @@
 // LLM Configuration - Direct approach for GitHub Pages
 export const LLM_CONFIG = {
-  apiKey: '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',
-  model: 'mistralai/mistral-small-3.2-24b-instruct:free',
+  apiKey: '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',
+  model: 'mistralai/devstral-small-2505:free',
   baseURL: 'https://openrouter.ai/api/v1',
   maxTokens: 1000,
   temperature: 0.7,
