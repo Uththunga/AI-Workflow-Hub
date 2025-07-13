@@ -1,6 +1,19 @@
+// Get environment variables with proper fallbacks
+const getApiKey = () => {
+  const envKey = import.meta.env.VITE_OPENROUTER_API_KEY
+  const fallbackKey = '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'
+
+  // Check if env key exists and is not empty/undefined
+  if (envKey && envKey.trim() && envKey !== 'undefined' && envKey !== 'null') {
+    return envKey
+  }
+
+  return fallbackKey
+}
+
 // LLM Configuration
 export const LLM_CONFIG = {
-  apiKey: import.meta.env.VITE_OPENROUTER_API_KEY || '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',
+  apiKey: getApiKey(),
   model: import.meta.env.VITE_OPENROUTER_MODEL || 'mistralai/mistral-small-3.2-24b-instruct:free',
   baseURL: import.meta.env.VITE_OPENROUTER_BASE_URL || 'https://openrouter.ai/api/v1',
   maxTokens: 1000,
@@ -13,6 +26,10 @@ if (typeof window !== 'undefined') {
   console.log('LLM Config Debug:', {
     hasApiKey: !!LLM_CONFIG.apiKey,
     apiKeyPrefix: LLM_CONFIG.apiKey ? LLM_CONFIG.apiKey.substring(0, 10) + '...' : 'undefined',
+    apiKeyLength: LLM_CONFIG.apiKey ? LLM_CONFIG.apiKey.length : 0,
+    envApiKey: import.meta.env.VITE_OPENROUTER_API_KEY ? 'present' : 'missing',
+    envApiKeyType: typeof import.meta.env.VITE_OPENROUTER_API_KEY,
+    envApiKeyValue: import.meta.env.VITE_OPENROUTER_API_KEY ? import.meta.env.VITE_OPENROUTER_API_KEY.substring(0, 10) + '...' : 'undefined',
     model: LLM_CONFIG.model,
     baseURL: LLM_CONFIG.baseURL,
     env: import.meta.env.MODE
