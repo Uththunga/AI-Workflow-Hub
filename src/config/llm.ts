@@ -1,8 +1,17 @@
-// LLM Configuration - Direct approach for GitHub Pages
+// Environment variable helper with fallbacks
+const getEnvVar = (key: string, fallback: string = ''): string => {
+  // Check if we're in browser environment
+  if (typeof window !== 'undefined' && import.meta.env) {
+    return import.meta.env[key] || fallback
+  }
+  return fallback
+}
+
+// LLM Configuration with environment variables and fallbacks
 export const LLM_CONFIG = {
-  apiKey: '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',
-  model: 'qwen/qwen3-235b-a22b:free',
-  baseURL: 'https://openrouter.ai/api/v1',
+  apiKey: getEnvVar('VITE_OPENROUTER_API_KEY', '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'),
+  model: getEnvVar('VITE_OPENROUTER_MODEL', 'qwen/qwen3-235b-a22b:free'),
+  baseURL: getEnvVar('VITE_OPENROUTER_BASE_URL', 'https://openrouter.ai/api/v1'),
   maxTokens: 1000,
   temperature: 0.7,
   stream: true,
@@ -10,10 +19,21 @@ export const LLM_CONFIG = {
 
 // Debug logging for production
 if (typeof window !== 'undefined') {
-  console.log('LLM Config Debug - API Key:', LLM_CONFIG.apiKey ? 'PRESENT (' + LLM_CONFIG.apiKey.length + ' chars)' : 'MISSING')
-  console.log('LLM Config Debug - Model:', LLM_CONFIG.model)
-  console.log('LLM Config Debug - Base URL:', LLM_CONFIG.baseURL)
-  console.log('LLM Config Debug - Full Config:', LLM_CONFIG)
+  console.log('=== LLM Configuration Debug ===')
+  console.log('Environment Variables:')
+  console.log('- VITE_OPENROUTER_API_KEY:', import.meta.env.VITE_OPENROUTER_API_KEY ? 'SET (' + import.meta.env.VITE_OPENROUTER_API_KEY.length + ' chars)' : 'NOT SET')
+  console.log('- VITE_OPENROUTER_MODEL:', import.meta.env.VITE_OPENROUTER_MODEL || 'NOT SET')
+  console.log('- VITE_OPENROUTER_BASE_URL:', import.meta.env.VITE_OPENROUTER_BASE_URL || 'NOT SET')
+  console.log('- MODE:', import.meta.env.MODE)
+  console.log('- DEV:', import.meta.env.DEV)
+  console.log('- PROD:', import.meta.env.PROD)
+  console.log('')
+  console.log('Final Configuration:')
+  console.log('- API Key:', LLM_CONFIG.apiKey ? 'PRESENT (' + LLM_CONFIG.apiKey.length + ' chars)' : 'MISSING')
+  console.log('- Model:', LLM_CONFIG.model)
+  console.log('- Base URL:', LLM_CONFIG.baseURL)
+  console.log('- Using Fallback API Key:', !import.meta.env.VITE_OPENROUTER_API_KEY)
+  console.log('===============================')
 }
 
 // System prompt for the AI assistant
